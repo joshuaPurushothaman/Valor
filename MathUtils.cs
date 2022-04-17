@@ -1,4 +1,6 @@
-﻿using SFML.Graphics;
+﻿using System.Numerics;
+
+using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
@@ -35,6 +37,21 @@ namespace Valor
 			public static Vector3f Normalize(Vector3f a)
 			{
 				return new Vector3f(a.X / Length(a), a.Y / Length(a), a.Z / Length(a));
+			}
+
+			public static Vector3f Multiply4x4Matrix(Vector3f i, Matrix4x4 mat)
+			{
+				var o = new Vector3f(
+					 i.X * mat.M11 + i.Y * mat.M21 + i.Z * mat.M31 + mat.M41,
+					 i.X * mat.M12 + i.Y * mat.M22 + i.Z * mat.M32 + mat.M42,
+					 i.X * mat.M13 + i.Y * mat.M23 + i.Z * mat.M33 + mat.M43);
+
+				float w = i.X * mat.M14 + i.Y * mat.M24 + i.Z * mat.M34 + mat.M44;
+
+				if (w != 0)
+					o /= w;
+
+				return o;
 			}
 		}
 

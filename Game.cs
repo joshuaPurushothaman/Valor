@@ -35,28 +35,27 @@ namespace Valor
 			//		  (int)VideoMode.FullscreenModes[0].Width / 2,
 			//		  (int)VideoMode.FullscreenModes[0].Height / 2),
 			//	  window);
-			//window.SetVerticalSyncEnabled(true);
-			window.SetFramerateLimit(360);
+			window.SetVerticalSyncEnabled(true);
+
+			//window.SetFramerateLimit(60);
+
 			Initialize();
 
-			//Thread thread = new (new ThreadStart(HandleEvents));
-			//thread.Start();
-
+			window.DispatchEvents();
+			
 			while (window.IsOpen)
 			{
-				stopwatch.Restart();
-
 				window.DispatchEvents();
 				
+				stopwatch.Restart();
+
 				// TODO: Figure out mouse relative movement https://en.sfml-dev.org/forums/index.php?topic=9370.0
 				Update();
 
-				window.Clear(Color.Black);
+				window.Clear();
 				Draw();
 				window.Display();
 			}
-			
-			//thread.Join();
 		}
 
 		protected Game(string title)
@@ -67,13 +66,5 @@ namespace Valor
 		protected abstract void Initialize();
 		protected abstract void Update();
 		protected abstract void Draw();
-
-		private void HandleEvents()
-		{
-			while (window.IsOpen)
-			{
-				window.DispatchEvents();
-			}
-		}
 	}
 }

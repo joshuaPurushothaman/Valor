@@ -7,6 +7,7 @@
 	class ComponentList<T> : IComponentList where T : struct
 	{
 		public List<T> components = new();
+		public Dictionary<int, int> entityIDToIndex = new();
 	}
 
 	static class ExtensionMethods
@@ -15,7 +16,15 @@
 		{
 			if (list is ComponentList<T> componentList)
 			{
-				componentList.components.Insert(entityID, component);
+				if (componentList.entityIDToIndex.TryGetValue(entityID, out int index))
+				{
+					componentList.components[index] = component;
+				}
+				else
+				{
+					componentList.components.Add(component);
+					componentList.entityIDToIndex.Add(entityID, componentList.components.Count - 1);
+				}
 			}
 		}
 	}
