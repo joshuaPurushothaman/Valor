@@ -58,6 +58,7 @@ namespace Valor
 		public struct Triangle
 		{
 			public Vector3f[] points = new Vector3f[3];
+			public float luminance = 0;
 
 			public Triangle(Vector3f v1, Vector3f v2, Vector3f v3)
 			{
@@ -65,11 +66,6 @@ namespace Valor
 				points[1] = v2;
 				points[2] = v3;
 			}
-		}
-
-		public class Mesh
-		{
-			public List<Triangle> triangles = new();
 		}
 	}
 }

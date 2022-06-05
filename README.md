@@ -1,1 +1,1 @@
-Valor
+Valor - A 3D Engine based on SFML and a bitset-based ECS architecture.

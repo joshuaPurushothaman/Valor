@@ -6,7 +6,7 @@ using SFML.Window;
 namespace Valor
 {
 	//	TODO: multiplayer comms
-	//	TODO: ECS, Commons.Components, Commons.Systems
+	//	TODO: ECS, Commons.Components, Commons.Systems... or maybe not
 	//	TODO: objects have mass -> newtonian physics
 	//		- Force2d ✅
 
